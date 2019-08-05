@@ -1,3 +1,10 @@
+
+.paper-container{
+    width:80%;
+    padding:10px;
+    margin: auto;
+    margin-top: 25%;
+}
 .register_container{
     width:100%;
     display: flex;
@@ -29,3 +36,15 @@
     height: 50px;
 }
 .link{color:'#fff'}
+.button_container{
+    display: flex;
+    justify-content: space-around;
+}
+.textFeild-container{
+    margin: 0;
+    padding: 0;
+    width:-webkit-fill-available;
+}
+.help-block{
+    color:red;
+}
