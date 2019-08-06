@@ -6,17 +6,17 @@
 }
 .login_container{
     width:100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
 }
 .login_container--logo{
-    width:50%;
+    width:90%;
     /* max-width: 500px; */
 }
 .login_container--form{
-    width:50%;
-    display: flex;
+    width:90%;
+    /* display: flex; */
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;

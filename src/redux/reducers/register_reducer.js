@@ -2,7 +2,7 @@ import * as actionTypes from '../constants/actionTypes'
 
 
 const initalState = {
-    users: [],
+    users:[],
 }
 const register = (state = initalState, action) => {
     // console.log('register reducer', state, action)
@@ -14,7 +14,7 @@ const register = (state = initalState, action) => {
             // let userObj = users.push(user)
             return {
                 ...state,
-                users: action.payload
+                // users: action.payload
             }
         //console.log('created Project', state, "action", action)
         default: return state

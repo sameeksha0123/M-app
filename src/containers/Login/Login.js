@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper';
 import './Login.css'
+import { connect } from 'react-redux'
+import { LoginUser } from '../../redux/actions/login_action'
+import axios from 'axios';
+
 
 class Login extends Component {
     constructor(props) {
@@ -30,15 +34,17 @@ class Login extends Component {
         var user = {
             email, password
         }
-        userList.push(user);
-        // axios.post(`https://test-urls-generation.firebaseio.com/userList.json`, user)
+       console.log("login props",this.props)
+        this.props.LoginUser(user)
+        // userList.push(user);
+        // axios.get(`https://test-urls-generation.firebaseio.com/user.json`, user)
         //     .then(res => {
         //         console.log("ID-generated", res.data.name)
         //         console.log("response hit", res.config.data)
 
         //     })
         this.setState({ email: '', password: '', submitted: true })
-        console.log("UserList on SUBMIT", userList)
+        console.log("UserList on SUBMIT", user)
     }
 
     render() {
@@ -95,4 +101,17 @@ class Login extends Component {
         )
     }
 }
-export default Login;
+
+const mapStateToProps = state => ({
+    login: state.login,
+
+})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        LoginUser: (user) => {
+            dispatch(LoginUser(user))
+        }
+    }
+}
+export default
+    connect(mapStateToProps, mapDispatchToProps)(Login);

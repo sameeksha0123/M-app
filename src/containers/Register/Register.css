@@ -3,20 +3,19 @@
     width:80%;
     padding:10px;
     margin: auto;
-    margin-top: 25%;
+   
 }
 .register_container{
     width:100%;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 .register_container--logo{
-    width:50%;
+    width:90%;
     /* max-width: 500px; */
 }
 .register_container--form{
-    width:50%;
+    width:90%;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;

@@ -2,10 +2,10 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 
-function ErrorMsgSnackbar(props) {
+const errorMsgSnackbar =(props)=> {
 
     return (
-        <div>
+        <div className="errorMsg" style={{background:'red',height:'20px'}}>
             {/* <Button onClick={handleClick}>Open simple snackbar</Button> */}
             <Snackbar
                 anchorOrigin={{
@@ -16,9 +16,9 @@ function ErrorMsgSnackbar(props) {
                 ContentProps={{
                     'aria-describedby': 'message-id',
                 }}
-                message={<span id="message-id">Required</span>}
+                message={<span style={{color:'white'}} id="message-id">Required</span>}
             />
         </div>
     );
 }
-export default ErrorMsgSnackbar;
+export default errorMsgSnackbar;

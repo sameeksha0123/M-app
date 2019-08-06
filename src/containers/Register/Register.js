@@ -9,6 +9,7 @@ import './Register.css'
 import { registerUser } from '../../redux/actions/register_action'
 import Paper from '@material-ui/core/Paper';
 import ErrorMsg from '../../component/Error/Error'
+import axios from 'axios';
 
 const emailCheck = `[a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@(?:gmail|GMAIL)([\.])(?:com|COM)`;
 class Register extends Component {
@@ -27,7 +28,8 @@ class Register extends Component {
                 name: '',
                 email: '',
                 password: '',
-            }
+            },
+            formValidate:false,
         }
 
     }
@@ -39,59 +41,82 @@ class Register extends Component {
         })
     }
     //ValidateField
-    handleValidation = (event) => {
-        // let { name, email, password, userList } = this.state;
+    handleValidation = () => {
+        let { nameErr, emailErr, passwordErr } = this.state.errorMsg;
+        let { name,email,password } = this.state;
+        // let nameError = this.state.errorMsg.name;
+        let nameError=''
+        let emailError= ''
+        let passwordError= ''
+        console.log('validation function called')
         // let errorMsg = {};
         // let formIsValid = true;
         // if (!name) {
         //     formIsValid = false;
         //     errorMsg[name] =
         // }
+        if (!password) { 
+            passwordError= "Password required"
+            this.setState({ errorMsg: { passwordErr: passwordError } })
+            console.log(this.state)
+         }
+        else if (password.length < 6) { 
+            passwordError= 'Password to short min length 6'
+            this.setState({ errorMsg: { passwordErr: passwordError } })
+            console.log(this.state)
+         }
+        var testEmail = /^([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@(?:neosofttech|NEOSOFTTECH|gmail|GMAIL)([\.])(?:com|COM)/i;
+        if (!name) { 
+            nameError='name cannot be blank'
+            this.setState({ errorMsg: { nameErr: nameError } }) 
+            console.log(this.state)
+        }
+        if (!email) {
+            emailError = 'Email required'
+            this.setState({ errorMsg: { emailErr: emailError } })
+        }
+        else if (!(testEmail.test((email)))) { 
+            emailError = 'Invalid Email'
+            this.setState({ errorMsg: { emailErr:emailError} }) 
+        }
+        
+        if(nameError||passwordError || emailError){
+            return false}
+        return true;
     }
-    submitLogin = e => {
+    submitLogin = e => { 
         e.preventDefault();
         // this.props();
+        const isValid=this.handleValidation();
+        console.log('isValid',isValid)
 
         const { name, email, password, submitted, userList } = this.state;
-        // const { name, email, password } = this.state.user;
+        if(isValid){
+            console.log("props",this.props)
+            var User = {name, email, password}
+            axios.post(`https://test-urls-generation.firebaseio.com/user.json`, User)
+            .then(res => {
+                console.log("ID-generated", res.data.name)
+                console.log("response hit", res.config.data)
 
-        var testEmail = /^([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@(?:neosofttech|NEOSOFTTECH)([\.])(?:com|COM)/i;
-        if (!name) { this.setState({ errorMsg: { name: 'Name requried' } }) }
-        if (!email) {
-            this.setState({ errorMsg: { email: 'Email required' } })
-        }
-        else if (!(testEmail.test((email)))) { this.setState({ errorMsg: { email: 'Invalid Email' } }) }
-        // let lastAtPos = email.lastIndexOf('@');
-        // let lastDotPos = email.lastIndexOf('.');
-        // if (!(lastAtPos < lastDotPos && lastAtPos > 0 && email.indexOf('@@') == -1 && lastDotPos > 2 && (email.length - lastDotPos) > 2)) {
-
-        //     alert("invalid email")
-        // }
-        if (!password) { this.setState({ errorMsg: { password: 'Password required' } }) }
-        else if ((password).length < 6) { this.setState({ errorMsg: { password: 'Password to short min length 6' } }) }
-        var User = {
-            name, email, password
-            // name: user.name,
-            // email: user.email,
-            // password: user.password,
-        }
-
-        userList.push(User);
-        // axios.post(`https://test-urls-generation.firebaseio.com/userList.json`, user)
-        //     .then(res => {
-        //         console.log("ID-generated", res.data.name)
-        //         console.log("response hit", res.config.data)
-
-        //     })
+            })
         this.setState({
 
             name: '',
             password: '',
             email: '',
             submitted: true,
+            errorMsg: {
+                name: '',
+                email: '',
+                password: '',
+            },
+
         })
         console.log("UserList on SUBMIT", User)
-        this.props.registerUser(User)
+        let user=this.props.register.users.push(User)
+        this.props.registerUser(user)
+        } 
     }
 
     render() {
@@ -117,9 +142,9 @@ class Register extends Component {
                                 margin="normal"
 
                             />
-                            {submitted && !this.state.name &&
+                           
                                 <div className="help-block">{this.state.errorMsg.name}</div>
-                            }
+                            
                         </div>
                         <div className='textFeild-container'>
                             <TextField
@@ -132,7 +157,7 @@ class Register extends Component {
                                 onChange={this.handlechange}
                                 margin="normal"
                             />
-                            {submitted && !this.state.email &&
+                            {submitted &&
                                 <div className="help-block">{this.state.errorMsg.email}</div>
                             }
                         </div>
@@ -171,6 +196,7 @@ class Register extends Component {
                         </Typography>
                     </div>
                 </div>
+                {/* <ErrorMsg /> */}
             </Paper>
         )
     }
