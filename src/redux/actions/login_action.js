@@ -1,10 +1,14 @@
-import * as actionTypes from '../constants/actionTypes'
+import * as actionTypes from "../constants/actionTypes";
 
-export const LoginUser = (user) => {
-    return (dispatch, getState) => {
-        dispatch({
-            type: actionTypes.LOGIN,
-            payload: user
-        })
-    }
-}
+export const LoginUser = user => {
+  return {
+    type: actionTypes.LOGIN,
+    payload: user
+  };
+};
+// export const registerUser = user => {
+//     return {
+//       type: actionTypes.REGISTERED,
+//       payload: user
+//     };
+//   };

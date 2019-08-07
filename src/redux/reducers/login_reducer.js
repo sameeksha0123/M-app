@@ -1,19 +1,17 @@
-import * as actionTypes from '../constants/actionTypes'
+import * as actionTypes from "../constants/actionTypes";
 
+const initalState = {};
 
-const initalState = {
-    loginUser:{}
-}
+const login = (state = initalState, action) => {
+  switch (action.type) {
+    case actionTypes.LOGIN:
+      return {
+        ...state,
+        loginUser: action.payload
+      };
 
-const login=(state=initalState,action)=>{
-    switch (action.type) {
-        case actionTypes.LOGIN:
-            return {
-                ...state,
-                loginUser :action.payload
-            }
-        
-        default: return state
-    }
-}
+    default:
+      return state;
+  }
+};
 export default login;

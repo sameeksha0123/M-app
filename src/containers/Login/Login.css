@@ -11,7 +11,7 @@
     justify-content: center;
 }
 .login_container--logo{
-    width:90%;
+    width:auto;
     /* max-width: 500px; */
 }
 .login_container--form{
@@ -30,7 +30,14 @@
     flex-wrap: nowrap;
     flex-direction: column;
 }
-.login-btn{
-    width:90%;
-    height: 50px;
+.button_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: auto;
 }
+/* .login-btn{
+ 
+    height: 50px;
+    margin-top: 35px;
+} */

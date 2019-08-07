@@ -11,7 +11,7 @@
     justify-content: center;
 }
 .register_container--logo{
-    width:90%;
+    width:auto;
     /* max-width: 500px; */
 }
 .register_container--form{
@@ -38,6 +38,8 @@
 .button_container{
     display: flex;
     justify-content: space-around;
+    margin-top: 30px;
+    width: 80%;
 }
 .textFeild-container{
     margin: 0;
