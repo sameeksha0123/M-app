@@ -11,6 +11,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import Tooltip from "@material-ui/core/Tooltip";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,10 +28,19 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
+  },
+  card: {
+    minWidth: 250
+  },
+  //   titleL: {
+  //     fontSize: 14,
+  //   },
+  pos: {
+    marginBottom: 12
   }
 }));
 
-export default function MenuAppBar() {
+function MenuAppBar(props) {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,6 +58,7 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   }
 
+  console.log("Appbar props", props.login);
   return (
     <div className={classes.root}>
       <FormGroup>
@@ -78,7 +95,13 @@ export default function MenuAppBar() {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <Tooltip
+                  disableFocusListener
+                  disableTouchListener
+                  title="Logged"
+                >
+                  <AccountCircle />
+                </Tooltip>
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -95,8 +118,11 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  {props.login.name}
+                  {/* <loggedInfo {...props.login.name} /> */}
+                </MenuItem>
+                {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
               </Menu>
             </div>
           )}
@@ -105,3 +131,23 @@ export default function MenuAppBar() {
     </div>
   );
 }
+
+// function loggedInfo(props) {
+//   //   const classes = useStyles();
+//   return (
+//     <Card className={classes.card}>
+//       <CardContent>
+//         <Typography>adjective</Typography>
+//       </CardContent>
+//       {/* <CardActions>
+//           <Button color="primary"
+//           size="small">Learn More</Button>
+//         </CardActions> */}
+//     </Card>
+//   );
+// }
+
+const mapStateToProps = state => ({
+  login: state.login.loginUser
+});
+export default connect(mapStateToProps)(MenuAppBar);
