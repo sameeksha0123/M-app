@@ -1,0 +1,19 @@
+.officeBox {
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid ghostwhite;
+  border-radius: 4px;
+  color: gray;
+  background: #7fdb90;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.officeBox .occupied {
+  background: #d45563;
+}
+/* .officeBox .available {
+  color: #7fdb90;
+} */

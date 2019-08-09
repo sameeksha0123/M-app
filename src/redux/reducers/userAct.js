@@ -6,12 +6,30 @@ const userAct = (state = initalState, action) => {
   // return state;
   switch (action.type) {
     case actionTypes.LOCATION:
-      // let user = action.payload;
-      // let userObj = users.push(user)
-      return {
+      switch (action.payload) {
+        case "Hinjewadi-NPTL SEZ IT 6":
+          return { map: "Map_H_IT_6 ", location: action.payload };
+          break;
+        case "Hinjewadi-NPTL SEZ IT 9":
+          return { map: "Map_H_IT_9 ", location: action.payload };
+        default:
+          return;
+      }
+
+    case actionTypes.STARTTIME:{
+        return{ 
+          ...state,
+          startTime: action.payload
+        }
+    }
+    case actionTypes.ENDTIME:{
+      return{ 
         ...state,
-        location: action.payload
-      };
+        endTime: action.payload
+      }
+
+    }
+    
     //console.log('created Project', state, "action", action)
     default:
       return state;

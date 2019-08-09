@@ -1,79 +1,11 @@
 import React, { Component } from "react";
 import Select from "../../../component/DropDown/DropDown";
 import { connect } from "react-redux";
-import Map from "../../../component/Map/Map_H_IT_6";
+import Map_H_IT_6 from "../../../component/Map/Map_H_IT_6";
+import {location,timeSlot,TimeFormat, typeOfMetting} from './ArrayData'
+import './UserTab.css'
 
-const location = [
-  "Ahmedabad",
-  "Bangalore",
-  "Nodia",
-  "Dadar",
-  "Prabhadevi-Busines Arcade (10 th Floor)",
-  "Prabhadevi-Busines Arcade (9 th Floor)",
-  "Prabhadevi-Busines Arcade (8 th Floor)",
-  "Rabale-Sigma IT Park(5th Floor)",
-  "Rabale-Sigma IT Park(9th Floor)",
-  "Hinjewadi-NPTL SEZ IT 6",
-  "Hinjewadi-NPTL SEZ IT 9",
-  "Onsite",
-  "Work From Home"
-];
-const typeOfMetting = ["Client Call", "Interview", "StandUp"];
-const timeSlot = [
-  "12:00 ",
-  "12:15 ",
-  "12:30 ",
-  "12:45 ",
-  "01:00 ",
-  "01:15 ",
-  "01:30 ",
-  "01:45 ",
-  "02:00 ",
-  "02:15 ",
-  "02:30 ",
-  "02:45 ",
-  "03:00 ",
-  "03:15 ",
-  "03:30 ",
-  "03:45 ",
-  "04:00 ",
-  "04:15 ",
-  "04:30 ",
-  "04:45 ",
-  "05:00 ",
-  "05:15 ",
-  "05:30 ",
-  "05:45 ",
-  "06:00 ",
-  "06:15 ",
-  "06:30 ",
-  "06:45 ",
-  "07:00 ",
-  "07:15 ",
-  "07:30 ",
-  "07:45 ",
-  "08:00 ",
-  "08:15 ",
-  "08:30 ",
-  "08:45 ",
-  "09:00 ",
-  "09:15 ",
-  "09:30 ",
-  "09:45 ",
-  "10:00 ",
-  "10:15 ",
-  "10:30 ",
-  "10:45 ",
-  "10:00 ",
-  "10:15 ",
-  "10:30 ",
-  "10:45 ",
-  "11:00 ",
-  "11:15 ",
-  "11:30 ",
-  "11:45 "
-];
-const TimeFormat = ["am", "pm"];
+
 class UserTab extends Component {
   constructor(props) {
     super(props);
@@ -86,23 +18,51 @@ class UserTab extends Component {
 
   render() {
     console.log("UserTab", this.props.location);
+    console.log("map", this.props.mapDiv);
+    // const mapDiv = this.props.mapDiv;
+    // function showMap() {
+    //   var map = this.props.mapDiv;
+    //   switch (map) {
+    //     case "Map_H_IT_6":
+    //       return <Map_H_IT_6 demo={"it6"} location={"Mumbai"} />;
+    //       break;
+    //     case "Map_H_IT_9":
+    //       return <Map_H_IT_9 />;
+    //     default:
+    //       return;
+    //   }
+    // }
     return (
-      <div className="">
+      <div className="userTab-container">
         UserTab
-        <div className="">
-          <Select label="Office Location" name={location} />
-          <Select label="Type of Meeting" name={typeOfMetting} />
-          <Select label="Time" name={timeSlot} />
-          <Select label="AM / PM" name={TimeFormat} />
+        <div className="userTab_container-div">
+        <div className="userTab--option_section">
+          <Select label="Office Location" name={location} action={"location_action"}/>
+          <div className="">
+            <Select label="Start Time" name={timeSlot} action={"start_action"} />
+            {/* <Select label="AM / PM" name={TimeFormat} action={"start_time_format"}/> */}
+          </div>
+          <div className="">
+            <Select label="End Time" name={timeSlot}  action={"end_action"}/>
+            {/* <Select label="AM / PM" name={TimeFormat} action={"end_time_format"}/> */}
+          </div>
+          <Select label="Type of Meeting" name={typeOfMetting} action={"meetingType_action"}/>
         </div>
         <div />
-        {this.props.location && <Map />}
+        {/* <div style={{ background: "red", height: "200px" }} /> */}
+        <div className="mapFloor-container">
+        {this.props.location && (
+          <Map_H_IT_6 location={this.props.location} mapOffice={this.props.mapDiv} action={"hello"}/>
+        )}
+        </div>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  location: state.userAct.location
+  location: state.userAct.location,
+  mapDiv: state.userAct.map
 });
 export default connect(mapStateToProps)(UserTab);

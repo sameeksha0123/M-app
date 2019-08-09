@@ -1,0 +1,20 @@
+.MapOffice_container{
+    box-sizing: border-box;
+    box-shadow: gray;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column
+}
+.officeFloor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+.box{
+    padding: 2px;
+    margin: 4px;
+
+}
