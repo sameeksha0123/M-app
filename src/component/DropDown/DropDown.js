@@ -5,7 +5,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { location_action,startTime_action,endTime_action,meetingType_action} from "../../redux/actions/userAction";
+import {
+  location_action,
+  startTime_action,
+  endTime_action,
+  meetingType_action
+} from "../../redux/actions/userAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import "./DropDown.css";
@@ -44,44 +49,50 @@ const MenuProps = {
 
 function DSelect(props) {
   const classes = useStyles();
-  console.log("UserTab", props.name);
+  //   console.log("UserTab", props.name);
   var label = "";
   const names = props.name;
-  const action= props.action;
+  const action = props.action;
   // const labelName=props.label;
-  console.log('action------------------',names)
-  
+  //   console.log("action------------------", names);
+
   const [personName, setPersonName] = React.useState([]);
-  console.log('personName',personName)
+  //   console.log("personName", personName);
 
   function handleChange(event) {
     setPersonName(event.target.value);
     console.log("value on select", event.target.value);
-    console.log('personName',personName)
-    console.log("action hit",action)
+    // console.log("personName", personName);
+    // console.log("action hit", action);
     // console.log('action------------------',labelName)
-    
-    if(action === 'location_action'){
+    // var t = new Date();
+    // var hh = t.getHours();
+    // var m = t.getMinutes();
+    // var dd = "AM";
+    // var h = hh;
+    // if (h >= 12) {
+    //   h = hh - 12;
+    //   dd = "PM";
+    // }
+    // console.log(toString(t + ":" + m + " " + dd));
+    if (action === "location_action") {
       props.location_action(event.target.value);
-      }
-      else if(action === 'start_action' ){
-        // var time =event.target.value;
-        // console.log("==", targettime )
-        // if(action === "start_time_format" )
-        // {
-          // var format= event.target.value;
-          // var targettime = time + format
-          // console.log("==", targettime , format, time)
-        // props.startTime_action(targettime);
-        // }}
-        props.startTime_action(event.target.value);
-        }
-        else if(action === 'end_action'){
-          props.endTime_action(event.target.value);
-          }
-          else if(action === 'meetingType_action'){
-            props.meetingType_action(event.target.value);
-            }
+    } else if (action === "start_action") {
+      // var time =event.target.value;
+      // console.log("==", targettime )
+      // if(action === "start_time_format" )
+      // {
+      // var format= event.target.value;
+      // var targettime = time + format
+      // console.log("==", targettime , format, time)
+      // props.startTime_action(targettime);
+      // }}
+      props.startTime_action(event.target.value);
+    } else if (action === "end_action") {
+      props.endTime_action(event.target.value);
+    } else if (action === "meetingType_action") {
+      props.meetingType_action(event.target.value);
+    }
   }
 
   return (
@@ -89,7 +100,7 @@ function DSelect(props) {
       <FormControl className={classes.formControl + " form-select"}>
         <InputLabel htmlFor="select-multiple">{props.label}</InputLabel>
         <Select
-          variant='outlined'
+          variant="outlined"
           value={personName}
           onChange={handleChange}
           input={<Input id="select-multiple" />}

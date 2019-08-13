@@ -46,15 +46,15 @@ class Register extends Component {
     let nameError = "";
     let emailError = "";
     let passwordError = "";
-    console.log("validation function called");
+    // console.log("validation function called");
     if (!password) {
       passwordError = "Password required";
       this.setState({ errorMsg: { passwordErr: passwordError } });
-      console.log(this.state);
+      //   console.log(this.state);
     } else if (password.length < 6) {
       passwordError = "Password to short min length 6";
       this.setState({ errorMsg: { passwordErr: passwordError } });
-      console.log(this.state);
+      //   console.log(this.state);
     }
     var testEmail = /^([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@(?:neosofttech|NEOSOFTTECH|gmail|GMAIL)([\.])(?:com|COM)/i;
     if (!name) {
@@ -79,11 +79,11 @@ class Register extends Component {
     e.preventDefault();
     // this.props();
     const isValid = this.handleValidation();
-    console.log("isValid", isValid);
+    // console.log("isValid", isValid);
 
     const { name, email, password, submitted, userList } = this.state;
     if (isValid) {
-      console.log("props", this.props);
+      //   console.log("props", this.props);
       var User = { name, email, password };
       axios
         .post(`https://test-urls-generation.firebaseio.com/user.json`, User)
@@ -104,7 +104,7 @@ class Register extends Component {
         registered: true,
         show: true
       });
-      console.log("UserList on SUBMIT", User);
+      //   console.log("UserList on SUBMIT", User);
       console.log("histroy", this.props.history);
       //appending name to url
       const { id } = this.props.match.params;

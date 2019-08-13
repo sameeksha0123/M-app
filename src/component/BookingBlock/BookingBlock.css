@@ -1,0 +1,28 @@
+.bookSlot-container {
+  /* background-color: #fff;
+  box-shadow: gray;
+  border-radius: 10px; */
+  display: flex;
+  flex-direction: column;
+}
+.timeSlot-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+.timeSlot-options {
+  width: 50%;
+  margin: 35px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.slots {
+  /* border: 1px solid blue;
+    border-radius: 5px; */
+  width: 50px;
+  height: 55px;
+  /* color: */
+}

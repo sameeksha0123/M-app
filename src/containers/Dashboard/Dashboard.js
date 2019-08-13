@@ -6,16 +6,17 @@ import Box from "@material-ui/core/Box";
 import SuperAdmin from "./SuperAdmin/SuperAdminTab";
 import Admin from "./AdminTab/AdminTab";
 import User from "./UserTab/UserTab";
+import BookBlock from "../../component/BookingBlock/BookingBlock";
 import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 // import classes from "classNames";
 import "./Dashboard.css";
 
-const tabItems = [
-  { id: 1, label: "Item1", link: "User" },
-  { id: 2, label: "Item2", link: "Admin" },
-  { id: 3, label: "Item3", link: "SuperAdmin" }
-];
+// const tabItems = [
+//   { id: 1, label: "Item1", link: "User" },
+//   { id: 2, label: "Item2", link: "Admin" },
+//   { id: 3, label: "Item3", link: "SuperAdmin" }
+// ];
 class DashBoard extends Component {
   state = { auth: true };
   render() {
@@ -33,6 +34,7 @@ class DashBoard extends Component {
             <Route path="/SuperAdmin" component={SuperAdmin} />
             <Route path="/User" component={User} />
             <Route path="/Admin" component={Admin} />
+            <Route path={`/DashBoard/bookSlot`} component={BookBlock} />;
           </Switch>
         </Container>
       </div>

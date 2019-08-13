@@ -43,11 +43,11 @@ class Login extends Component {
         let responseData = res.data;
         let tempArray = [];
         // responseData.map(user => user)
-        console.log("response data", responseData);
+        // console.log("response data", responseData);
         Object.keys(responseData).map(ele => {
           tempArray.push(responseData[ele]);
         });
-        console.log(tempArray);
+        // console.log(tempArray);
         // this.props.registerUser(responseData)
         // let user = this.props.register.push(responseData);
         this.props.registerUser(tempArray);
@@ -68,17 +68,17 @@ class Login extends Component {
     if (!password) {
       passwordError = "Password required";
       this.setState({ errorMsg: { passwordErr: passwordError } });
-      console.log(this.state);
+      //   console.log(this.state);
     } else if (password.length < 6) {
       passwordError = "Password to short min length 6";
       this.setState({ errorMsg: { passwordErr: passwordError } });
-      console.log(this.state);
+      //   console.log(this.state);
     }
     // var testEmail = /^([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@(?:neosofttech|NEOSOFTTECH|gmail|GMAIL)([\.])(?:com|COM)/i;
     if (!name) {
       nameError = "name cannot be blank";
       this.setState({ errorMsg: { nameErr: nameError } });
-      console.log(this.state);
+      //   console.log(this.state);
     }
     if (nameError || passwordError) {
       return false;
@@ -89,15 +89,15 @@ class Login extends Component {
     e.preventDefault();
     // this.props();
     const isValid = this.handleValidation();
-    console.log("isValid", isValid);
+    // console.log("isValid", isValid);
     const { name, password, userList } = this.state;
     var User = {
       name,
       password
     };
-    console.log("login props", this.props);
+    // console.log("login props", this.props);
     let registeredUser = this.props.register.users;
-    console.log("userss", registeredUser);
+    // console.log("userss", registeredUser);
     this.props.LoginUser(User);
 
     // userList.push(user);
@@ -135,7 +135,7 @@ class Login extends Component {
 
   render() {
     const { logged, show } = this.state;
-    console.log("UserDetails ", this.props.users);
+    // console.log("UserDetails ", this.props.users);
     return (
       <Paper className="paper-container">
         <div className="login_container">

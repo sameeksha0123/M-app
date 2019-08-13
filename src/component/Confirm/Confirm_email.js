@@ -7,7 +7,7 @@ class ConfirmMail extends Component {
   //     show :true
   // }
   render() {
-    console.log("props in confirm", this.props);
+    // console.log("props in confirm", this.props);
     return (
       <ModalMessage {...this.props} image={emailImg}>
         Email has been send to you

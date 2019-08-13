@@ -1,20 +1,30 @@
-.MapOffice_container{
-    box-sizing: border-box;
-    box-shadow: gray;
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    flex-direction: column
+.MapOffice_container {
+  box-sizing: border-box;
+  box-shadow: gray;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
 }
-.officeFloor{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
+.officeFloor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
-.box{
-    padding: 2px;
-    margin: 4px;
-
+.box {
+  padding: 2px;
+  margin: 4px;
+}
+h2 {
+  margin-bottom: 0px;
+}
+.focus {
+  border: 2px solid #88dafc;
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+.officeLink {
+  text-decoration: none;
 }

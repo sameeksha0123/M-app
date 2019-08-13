@@ -1,19 +1,25 @@
 .officeBox {
   padding: 5px;
-  width: 40px;
-  height: 40px;
+  width: 120px;
+  height: 120px;
   border: 1px solid ghostwhite;
-  border-radius: 4px;
+  border-radius: 10px;
   color: gray;
+  font-size: 900;
   background: #7fdb90;
   margin: 10px;
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-direction: column;
 }
-.officeBox .occupied {
+.occupied {
   background: #d45563;
+  color: #fff;
 }
+/* .officeBox .partial{
+    background: yellow
+} */
 /* .officeBox .available {
   color: #7fdb90;
 } */
