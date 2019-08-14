@@ -36,6 +36,7 @@ class UserTab extends Component {
       <div className="userTab-container">
         UserTab
         <div className="userTab_container-div">
+<<<<<<< Updated upstream
         <div className="userTab--option_section">
           <Select label="Office Location" name={location} action={"location_action"}/>
           <div className="">
@@ -45,6 +46,19 @@ class UserTab extends Component {
           <div className="">
             <Select label="End Time" name={timeSlot}  action={"end_action"}/>
             {/* <Select label="AM / PM" name={TimeFormat} action={"end_time_format"}/> */}
+=======
+          <div />
+          {/* <div style={{ background: "red", height: "200px" }} /> */}
+          <div className="mapFloor-container">
+            {this.props.location && (
+              <Link to={`/DashBoard/`}>
+                <Map_H_IT_6
+                  location={this.props.location}
+                  mapOffice={this.props.mapDiv}
+                />
+              </Link>
+            )}
+>>>>>>> Stashed changes
           </div>
           <Select label="Type of Meeting" name={typeOfMetting} action={"meetingType_action"}/>
         </div>

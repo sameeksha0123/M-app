@@ -119,7 +119,8 @@ function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  {props.login.name}
+                  {/* {props.login.name} */}
+                  {localStorage.getItem("name")}
                   {/* <loggedInfo {...props.login.name} /> */}
                 </MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}

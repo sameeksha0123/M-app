@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 // import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import Paper from "@material-ui/core/Paper";
 import "./Login.css";
 import { connect } from "react-redux";
 import checked from "../../assets/images/Checked.png";
@@ -125,6 +124,8 @@ class Login extends Component {
         user => user.name === User.name && user.password === User.password
       );
       console.log("log", log);
+      localStorage.setItem("name", log.name);
+      localStorage.setItem("password", log.password);
       if (log) {
         this.setState({ logged: true, show: true });
       }
@@ -137,7 +138,7 @@ class Login extends Component {
     const { logged, show } = this.state;
     console.log("UserDetails ", this.props.users);
     return (
-      <Paper className="paper-container">
+      <div className="paper-container">
         <div className="login_container">
           <div className="login_container--logo">
             <Typography variant="h3" gutterBottom>
@@ -203,7 +204,7 @@ class Login extends Component {
             )}
           </div>
         </div>
-      </Paper>
+      </div>
     );
   }
 }

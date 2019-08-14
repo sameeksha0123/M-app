@@ -57,6 +57,7 @@ function DSelect(props) {
   function handleChange(event) {
     setPersonName(event.target.value);
     console.log("value on select", event.target.value);
+<<<<<<< Updated upstream
     console.log('personName',personName)
     console.log("action hit",action)
     // console.log('action------------------',labelName)
@@ -82,6 +83,18 @@ function DSelect(props) {
           else if(action === 'meetingType_action'){
             props.meetingType_action(event.target.value);
             }
+=======
+
+    if (action === "location_action") {
+      props.location_action(event.target.value);
+    } else if (action === "start_action") {
+      props.startTime_action(event.target.value);
+    } else if (action === "end_action") {
+      props.endTime_action(event.target.value);
+    } else if (action === "meetingType_action") {
+      props.meetingType_action(event.target.value);
+    }
+>>>>>>> Stashed changes
   }
 
   return (
