@@ -57,33 +57,6 @@ function DSelect(props) {
   function handleChange(event) {
     setPersonName(event.target.value);
     console.log("value on select", event.target.value);
-<<<<<<< Updated upstream
-    console.log('personName',personName)
-    console.log("action hit",action)
-    // console.log('action------------------',labelName)
-    
-    if(action === 'location_action'){
-      props.location_action(event.target.value);
-      }
-      else if(action === 'start_action' ){
-        // var time =event.target.value;
-        // console.log("==", targettime )
-        // if(action === "start_time_format" )
-        // {
-          // var format= event.target.value;
-          // var targettime = time + format
-          // console.log("==", targettime , format, time)
-        // props.startTime_action(targettime);
-        // }}
-        props.startTime_action(event.target.value);
-        }
-        else if(action === 'end_action'){
-          props.endTime_action(event.target.value);
-          }
-          else if(action === 'meetingType_action'){
-            props.meetingType_action(event.target.value);
-            }
-=======
 
     if (action === "location_action") {
       props.location_action(event.target.value);
@@ -94,7 +67,6 @@ function DSelect(props) {
     } else if (action === "meetingType_action") {
       props.meetingType_action(event.target.value);
     }
->>>>>>> Stashed changes
   }
 
   return (

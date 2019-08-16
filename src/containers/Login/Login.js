@@ -13,11 +13,12 @@ import axios from "axios";
 import { REGISTERED } from "../../redux/constants/actionTypes";
 import ModalMessage from "../../component/Modal/Modal_message";
 import { bindActionCreators } from "redux";
+import TimePicker from 'react-bootstrap-time-picker';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       email: "",
       password: "",
@@ -28,10 +29,12 @@ class Login extends Component {
         password: ""
       },
       logged: false,
-      show: false
+      show: false,time: 0 
       // userList: [],
     };
+    this.handleTimeChange = this.handleTimeChange.bind(this);
   }
+ 
   componentDidMount() {
     axios
       .get("https://test-urls-generation.firebaseio.com/user.json")
@@ -51,6 +54,10 @@ class Login extends Component {
         // let user = this.props.register.push(responseData);
         this.props.registerUser(tempArray);
       });
+  }
+  handleTimeChange(time) {
+    console.log(time);     // <- prints "3600" if "01:00" is picked
+    this.setState({ time });
   }
   handlechange = event => {
     this.setState({
@@ -136,6 +143,17 @@ class Login extends Component {
 
   render() {
     const { logged, show } = this.state;
+    var t = new Date();
+    var hh = t.getHours();
+    var mm = t.getMinutes();
+    var time=''
+    if(mm<=15){mm = 15}
+    else if(mm>15 && mm<=30){mm=30;time= hh +":"+ mm;}
+    else if(mm>30 && mm<=45){mm=45;time= hh +":"+ mm;}
+    else if(mm>45 && mm<=59){mm=0;hh= hh+1;time= hh +":"+ mm;}
+    else {mm=0;hh= hh+1;time= hh +":"+ mm;}
+   
+
     console.log("UserDetails ", this.props.users);
     return (
       <div className="paper-container">
@@ -204,6 +222,10 @@ class Login extends Component {
             )}
           </div>
         </div>
+   
+        <TimePicker start={time} end="23:59" step={15}
+        onChange={this.handleTimeChange} value={this.state.time}
+         onClick={(e)=>console.log("value",e.target.value)}/>
       </div>
     );
   }
