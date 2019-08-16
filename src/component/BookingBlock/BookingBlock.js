@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import DropDown from "../DropDown/DropDown";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import DateFnsUtils from "@date-io/date-fns";
+import { KeyboardTimePicker, KeyboardDatePicker } from "@material-ui/pickers";
 import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -75,6 +77,9 @@ class Book extends Component {
       //   console.log("****", this.state.bookingStatus);
     }
   };
+  handleDateChange=()={
+      
+  }
   getSlot = (e, bufferValue) => {
     //  console.log("getslot", timeSlot);
     this.setState({ endTime: bufferValue });
@@ -218,6 +223,16 @@ class Book extends Component {
             name={timeSlotArray}
             action={"start_action"}
             onClick={() => this.getdropValue()}
+          />
+          <KeyboardTimePicker
+            margin="normal"
+            id="time-picker"
+            label="Time picker"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            KeyboardButtonProps={{
+              "aria-label": "change time"
+            }}
           />
           {this.props.startTime && nextDiv}
           {/* {this.props.startTime && this.props.endTime && nextDiv2} */}

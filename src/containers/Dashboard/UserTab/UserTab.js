@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Select from "../../../component/DropDown/DropDown";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Map_H_IT_6 from "../../../component/Map/Map_H_IT_6";
-import {location,timeSlot,TimeFormat, typeOfMetting} from './ArrayData'
-import './UserTab.css'
-
+import { location, timeSlot, TimeFormat, typeOfMetting } from "./ArrayData";
+import "./UserTab.css";
 
 class UserTab extends Component {
   constructor(props) {
@@ -36,19 +36,13 @@ class UserTab extends Component {
       <div className="userTab-container">
         UserTab
         <div className="userTab_container-div">
-<<<<<<< Updated upstream
-        <div className="userTab--option_section">
-          <Select label="Office Location" name={location} action={"location_action"}/>
-          <div className="">
-            <Select label="Start Time" name={timeSlot} action={"start_action"} />
-            {/* <Select label="AM / PM" name={TimeFormat} action={"start_time_format"}/> */}
+          <div className="userTab--option_section">
+            <Select
+              label="Office Location"
+              name={location}
+              action={"location_action"}
+            />
           </div>
-          <div className="">
-            <Select label="End Time" name={timeSlot}  action={"end_action"}/>
-            {/* <Select label="AM / PM" name={TimeFormat} action={"end_time_format"}/> */}
-=======
-          <div />
-          {/* <div style={{ background: "red", height: "200px" }} /> */}
           <div className="mapFloor-container">
             {this.props.location && (
               <Link to={`/DashBoard/`}>
@@ -58,17 +52,7 @@ class UserTab extends Component {
                 />
               </Link>
             )}
->>>>>>> Stashed changes
           </div>
-          <Select label="Type of Meeting" name={typeOfMetting} action={"meetingType_action"}/>
-        </div>
-        <div />
-        {/* <div style={{ background: "red", height: "200px" }} /> */}
-        <div className="mapFloor-container">
-        {this.props.location && (
-          <Map_H_IT_6 location={this.props.location} mapOffice={this.props.mapDiv} action={"hello"}/>
-        )}
-        </div>
         </div>
       </div>
     );
