@@ -151,7 +151,7 @@ class Login extends Component {
     else if(mm>15 && mm<=30){mm=30;time= hh +":"+ mm;}
     else if(mm>30 && mm<=45){mm=45;time= hh +":"+ mm;}
     else if(mm>45 && mm<=59){mm=0;hh= hh+1;time= hh +":"+ mm;}
-    else {mm=0;hh= hh+1;time= hh +":"+ mm;}
+    else {mm=0;time= hh +":"+ mm;}
    
 
     console.log("UserDetails ", this.props.users);
