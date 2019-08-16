@@ -12,6 +12,9 @@ import {
   typeOfMetting
 } from "../../containers/Dashboard/UserTab/ArrayData";
 import "./BookingBlock.css";
+import TimeInput from "material-ui-time-picker";
+import moment from "moment";
+import Timekeeper from "react-timekeeper";
 
 // const useStyles = makeStyles(theme => ({
 //   btn: {
@@ -29,28 +32,29 @@ class Book extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      availability: true
+      availability: true,
+      time: new Date(),
+      selectedDate: new Date(),
+      setSelectedDate: "",
+      updatedTime:''
     };
   }
+  handleChange = time => {
+    this.setState({ updatedTime: time });
+    console.log("start Time", this.state.updatedTime);
+    var selectedTime = this.state.updatedTime;
+    console.log(moment(selectedTime).format("LT"));
 
-  componentWillReceiveProps(nextProps) {
-    console.log("comp receive props", nextProps);
-    if (bookedSlotArray.find(item => item.startTime === nextProps)) {
-      this.setState({ availability: false });
+    if (bookedSlotArray.find(item => item.startTime === this.state.time)) {
+      //   this.setState({ availability: false });
+      console.log("same time");
+    } else {
+      console.log("not same @@@@");
     }
-    console.log("component receiveProps", this.state.availability, "@@@@");
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    //if selected starttime is in booked array
-    if (bookedSlotArray.find(item => item.startTime === !nextProps)) {
-      console.log("returnung true");
-      return true;
-    } else return false;
-  }
-  componentWillUpdate() {
-    console.log("wiilupdate called");
-    this.setState({ availability: false });
-  }
+  };
+  handleDateChange = date => {
+    this.setState({ setSelectedDate: date });
+  };
   checkbookingStatus = () => {
     if (this.props.location && this.props.startTime && this.props.endTime) {
       this.setState({ bookingStatus: true });
@@ -122,61 +126,88 @@ class Book extends Component {
     var timeSlotArray = timeSlot.slice(timeSlot.indexOf(currentTime));
 
     var selectedStartTime = this.props.startTime;
-    console.log("####", selectedStartTime);
-    if (bookedSlotArray.find(item => item.startTime === selectedStartTime)) {
-      //   this.setState({ availability: false });
-      console.log("same time");
-    } else {
-      console.log("not same @@@@");
-    }
+    // console.log("####", selectedStartTime);
+    // if (bookedSlotArray.find(item => item.startTime === selectedStartTime)) {
+    //   //   this.setState({ availability: false });
+    //   console.log("same time");
+    // } else {
+    //   console.log("not same @@@@");
+    // }
+
     return (
       <Paper className="bookSlot-container">
-        <Select
-          label="Type of Meeting"
-          name={typeOfMetting}
-          action={"meetingType_action"}
-        />
-        <div className="timeSlot-wrapper">
-          <Select
-            label="Start Time"
-            name={timeSlotArray}
-            action={"start_action"}
+        <div className="timePicker">
+          <TimeInput
+            mode="12h"
+            value={this.state.time}
+            onChange={ this.handleChange}
+            placeholder="Start Time"
           />
-          {/* <Select label="AM / PM" name={TimeFormat} action={"start_time_format"}/> */}
-          <div className="timeSlot-options">
-            {meetingSlots.map(item => (
-              <Button
-                variant="contained"
-                className={"slots"}
-                value={item}
-                color="primary"
-                onClick={e => this.getSlot(e, item)}
-                disabled
-              >
-                {item}
-              </Button>
-            ))}
-          </div>
-          <Select
-            label="End Time"
-            name={timeSlotArray.slice(1)}
-            action={"end_action"}
-          />
-          {/* <Select label="AM / PM" name={TimeFormat} action={"end_time_format"}/> */}
+          {/* <Timekeeper time={this.state.time} switchToMinuteOnHourSelect /> */}
         </div>
-        {this.state.availability && <div> NOT AVAILABLE </div>}
-        <Button
-          variant="contained"
-          color="primary"
-          className="login-btn"
-          onClick={this.submitLogin}
-        >
-          BOOK
-        </Button>
       </Paper>
     );
   }
 }
+
+//     return (
+//       <Paper className="bookSlot-container">
+//         <Select
+//           label="Type of Meeting"
+//           name={typeOfMetting}
+//           action={"meetingType_action"}
+//         />
+//         <KeyboardTimePicker
+//           margin="normal"
+//           id="time-picker"
+//           label="Time picker"
+//           value={this.state.selectedDate}
+//           onChange={this.handleDateChange}
+//           KeyboardButtonProps={{
+//             "aria-label": "change time"
+//           }}
+//         />
+//         <div className="timeSlot-wrapper">
+//           <Select
+//             label="Start Time"
+//             name={timeSlotArray}
+//             action={"start_action"}
+//           />
+//           {/* <Select label="AM / PM" name={TimeFormat} action={"start_time_format"}/> */}
+//           <div className="timeSlot-options">
+//             {meetingSlots.map(item => (
+//               <Button
+//                 variant="contained"
+//                 className={"slots"}
+//                 value={item}
+//                 color="primary"
+//                 onClick={e => this.getSlot(e, item)}
+//                 disabled
+//               >
+//                 {item}
+//               </Button>
+//             ))}
+//           </div>
+//           <Select
+//             label="End Time"
+//             name={timeSlotArray.slice(1)}
+//             action={"end_action"}
+//           />
+//           {/* <Select label="AM / PM" name={TimeFormat} action={"end_time_format"}/> */}
+//         </div>
+//         {this.state.availability && <div> NOT AVAILABLE </div>}
+//         <Button
+//           variant="contained"
+//           color="primary"
+//           className="login-btn"
+//           onClick={this.submitLogin}
+//         >
+//           BOOK
+//         </Button>
+//       </Paper>
+//     );
+//   }
+// }
 
 const mapStateToProps = state => ({
   location: state.userAct.location,

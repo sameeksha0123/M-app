@@ -34,13 +34,13 @@ class Map extends Component {
     const roomArray = this.props.mapArray;
     return (
       <div className="MapOffice_container">
-        <h2>{this.props.location}</h2>
-        {/* <h2>{this.props.mapOffice}</h2> */}
+        {/* <h2>{this.props.location}</h2> */}
+        <h2>{this.props.mapOffice}</h2>
         {/* {this.officeArray(this.props.mapOffice)} */}
         <div className="officeFloor">
           {/* {this.props.mapOffice && officeArray} */}
-          {roomArray.map((item, index) => (
-            // console.log('--',item,index)
+          {/* {roomArray.map((item, index) => ( */}
+          {/* console.log('--',item,index)
             <Link className="officeLink" to={`/Dashboard/bookSlot`}>
               <OfficeBox
                 className="box"
@@ -51,7 +51,7 @@ class Map extends Component {
                 //   active={this.state.selected}
               />
             </Link>
-          ))}
+          ))} */}
         </div>
       </div>
     );

@@ -1,17 +1,32 @@
-
 /* .userTab-container{
     display: flex;
     justify-content: center;
     align-items: center;
 } */
-.userTab_container-div{
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
+.userTab_container-div {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
-.userTab--option_section{
-
+.userTab--option_section {
 }
-.mapFloor-container{
-
+.mapFloor-container {
+}
+.class-card {
+  height: 200px;
+  min-width: 100px;
+  width: 250px;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.location-container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.location-container > a {
+  text-decoration: none;
 }

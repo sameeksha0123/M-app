@@ -62,31 +62,10 @@ function DSelect(props) {
   function handleChange(event) {
     setPersonName(event.target.value);
     console.log("value on select", event.target.value);
-    // console.log("personName", personName);
-    // console.log("action hit", action);
-    // console.log('action------------------',labelName)
-    // var t = new Date();
-    // var hh = t.getHours();
-    // var m = t.getMinutes();
-    // var dd = "AM";
-    // var h = hh;
-    // if (h >= 12) {
-    //   h = hh - 12;
-    //   dd = "PM";
-    // }
-    // console.log(toString(t + ":" + m + " " + dd));
+
     if (action === "location_action") {
       props.location_action(event.target.value);
     } else if (action === "start_action") {
-      // var time =event.target.value;
-      // console.log("==", targettime )
-      // if(action === "start_time_format" )
-      // {
-      // var format= event.target.value;
-      // var targettime = time + format
-      // console.log("==", targettime , format, time)
-      // props.startTime_action(targettime);
-      // }}
       props.startTime_action(event.target.value);
     } else if (action === "end_action") {
       props.endTime_action(event.target.value);

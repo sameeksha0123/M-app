@@ -1,14 +1,29 @@
 import React, { Component } from "react";
 import Select from "../../../component/DropDown/DropDown";
+import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 // import Button from "@material-ui/core/Button";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 import BookBlock from "../../../component/BookingBlock/BookingBlock";
-import Map_H_IT_6 from "../../../component/Map/Map_H_IT_6";
+import Map from "../../../component/Map/MapOffice";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActions";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Admin from "../AdminTab/AdminTab";
 // import { hIT9, hIT6 } from "./RoomallocationData";
-import { location, timeSlot, TimeFormat, typeOfMetting } from "./ArrayData";
+import {
+  location_action,
+  startTime_action,
+  endTime_action,
+  meetingType_action
+} from "../../../redux/actions/userAction";
+import { bindActionCreators } from "redux";
+import { location } from "./ArrayData";
 import axios from "axios";
 import "./UserTab.css";
+import { Switch } from "@material-ui/core";
 
 class UserTab extends Component {
   constructor(props) {
@@ -55,47 +70,61 @@ class UserTab extends Component {
       console.log("Booking unavailable");
     }
   };
+  locationSelected = (e, item) => {
+    console.log("city seleted", item);
+    this.props.location_action(item);
+    this.props.history.push(`/location`);
+  };
   render() {
-    // console.log("@@##@@", timeSlotArray.slice(1));
-
-    // console.log("UserTab", this.props.location);
-    // console.log("map", this.props.mapDiv);
-    // const mapDiv = this.props.mapDiv;
-    // function showMap() {
-    //   var map = this.props.mapDiv;
-    //   switch (map) {
-    //     case "Map_H_IT_6":
-    //       return <Map_H_IT_6 demo={"it6"} location={"Mumbai"} />;
-    //       break;
-    //     case "Map_H_IT_9":
-    //       return <Map_H_IT_9 />;
-    //     default:
-    //       return;
-    //   }
-    // }
     return (
       <div className="userTab-container">
-        UserTab
-        <div className="userTab--option_section">
+        <Typography variant="h3" component="h2" gutterBottom>
+          LOCATION
+        </Typography>
+
+        <div className="location-container">
+          {location.map(item => {
+            console.log("item", item);
+            return (
+              <Link to={`/location`}>
+                <Card className="class-card">
+                  <CardActionArea onClick={e => this.locationSelected(e, item)}>
+                    <CardContent>
+                      <Typography variant="h5" component="h2" gutterBottom>
+                        {item}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+        {/* <div className="userTab--option_section">
           <Select
             label="Office Location"
             name={location}
             action={"location_action"}
           />
-        </div>
+        </div> */}
         <div className="userTab_container-div">
+          {this.props.location && (
+            <div>
+              <Map array={this.props.mapArray} />
+            </div>
+          )}
           <div />
           {/* <div style={{ background: "red", height: "200px" }} /> */}
-          <div className="mapFloor-container">
+          {/* <div className="mapFloor-container">
             {this.props.location && (
-              <Link to={`/DashBoard/${this.props.location}`}>
-                <Map_H_IT_6
-                  location={this.props.location}
-                  mapOffice={this.props.mapDiv}
-                />
-              </Link>
+              //   <Link to={`/DashBoard/`}>
+              <Map_H_IT_6
+                location={this.props.location}
+                mapOffice={this.props.mapDiv}
+              />
+              //   </Link>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -104,10 +133,27 @@ class UserTab extends Component {
 
 const mapStateToProps = state => ({
   location: state.userAct.location,
-  mapDiv: state.userAct.map,
-  startTime: state.userAct.startTime,
-  endTime: state.userAct.endTime,
-  typeOfMeeting: state.userAct.typeOfMeeting,
-  userTab: state.userAct
+  mapArray: state.userAct.mapArray
+  //   mapDiv: state.userAct.map,
+  //   startTime: state.userAct.startTime,
+  //   endTime: state.userAct.endTime,
+  //   typeOfMeeting: state.userAct.typeOfMeeting,
+  //   userTab: state.userAct
 });
-export default connect(mapStateToProps)(UserTab);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      location_action
+      //   startTime_action,
+      //   endTime_action,
+      //   meetingType_action
+    },
+    dispatch
+  );
+};
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(UserTab)
+);

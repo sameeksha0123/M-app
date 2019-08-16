@@ -6,7 +6,8 @@ import Box from "@material-ui/core/Box";
 import SuperAdmin from "./SuperAdmin/SuperAdminTab";
 import Admin from "./AdminTab/AdminTab";
 import User from "./UserTab/UserTab";
-import BookBlock from "../../component/BookingBlock/BookingBlock";
+import BookingBlock from "../../component/BookingBlock/BookingBlock";
+import MapOffice from "../../component/Map/MapOffice";
 import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 // import classes from "classNames";
@@ -29,12 +30,15 @@ class DashBoard extends Component {
           {/* <Tab tabInfo={tabItems} /> */}
 
           {/* <Box component="div" m={1} /> */}
-          {this.state.auth && <User />}
+          {/* {this.state.auth && <User />} */}
           <Switch>
             <Route path="/SuperAdmin" component={SuperAdmin} />
             <Route path="/User" component={User} />
             <Route path="/Admin" component={Admin} />
-            <Route path={`/DashBoard/bookSlot`} component={BookBlock} />;
+            <Route path={`/location`} component={MapOffice} />;
+            <Route path={`/userinfo`} component={User} />;
+            <Route path={`/bookSlot`} component={BookingBlock} />
+            {/* // <Route path={`/DashBoard/bookSlot`} component={BookBlock} />; */}
           </Switch>
         </Container>
       </div>

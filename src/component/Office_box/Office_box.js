@@ -1,6 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import "./Office_box.css";
+import a from "../../../src/assets/images/a.png";
+import NA from "../../../src/assets/images/NA.png";
 
 const office = props => {
   console.log("props of meeting room @@@@", props.availabitity);
@@ -8,7 +10,8 @@ const office = props => {
   if (props.availabitity) {
     return (
       <div className="officeBox" onClick={props.click}>
-        <Typography variant="h6" gutterBottom>
+        <img src={a} alt="AVAILABLE" />
+        <Typography variant="h6" gutterBottom className="">
           {props.name}
         </Typography>
         <Typography variant="body2" gutterBottom>
@@ -19,6 +22,7 @@ const office = props => {
   } else {
     return (
       <div className="officeBox occupied" onClick={props.click}>
+        <img src={NA} alt="NOT AVAILABLE" />
         <Typography variant="h6" gutterBottom>
           {props.name}
         </Typography>

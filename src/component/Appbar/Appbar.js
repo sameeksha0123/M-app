@@ -58,12 +58,11 @@ function MenuAppBar(props) {
     setAnchorEl(null);
   }
 
-  //   console.log("Appbar props", props.login);
-  console.log("Appbar");
+  console.log("Appbar props", props.login);
   return (
     <div className={classes.root}>
-      {/* <FormGroup>
-        <FormControlLabel
+      <FormGroup>
+        {/* <FormControlLabel
           control={
             <Switch
               checked={auth}
@@ -71,9 +70,9 @@ function MenuAppBar(props) {
               aria-label="login switch"
             />
           }
-        //   label={auth ? "Logout" : "Login"}
-        />
-      </FormGroup> */}
+          label={auth ? "Logout" : "Login"}
+        /> */}
+      </FormGroup>
       <AppBar position="static">
         <Toolbar>
           {/* <IconButton
@@ -85,10 +84,9 @@ function MenuAppBar(props) {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            App NAME
+            Photos
           </Typography>
-          {/* {auth && ( */}
-          {
+          {auth && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -121,14 +119,14 @@ function MenuAppBar(props) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  {props.login.name}
+                  {/* {props.login.name} */}
+                  {localStorage.getItem("name")}
                   {/* <loggedInfo {...props.login.name} /> */}
                 </MenuItem>
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
               </Menu>
             </div>
-            //   )
-          }
+          )}
         </Toolbar>
       </AppBar>
     </div>

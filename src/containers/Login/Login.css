@@ -1,43 +1,44 @@
-.paper-container{
-    width:80%;
-    padding:10px;
-    margin: auto;
-    margin-top: 25%;
+.paper-container {
+  width: 500px;
+  padding: 10px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 10px;
 }
-.login_container{
-    width:100%;
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
+.login_container {
+  width: 100%;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
 }
-.login_container--logo{
-    width:auto;
-    /* max-width: 500px; */
+.login_container--logo {
+  width: auto;
+  /* max-width: 500px; */
 }
-.login_container--form{
-    width:90%;
-    /* display: flex; */
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 20px;
+.login_container--form {
+  width: 90%;
+  /* display: flex; */
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px;
 }
-.textField{
-    width:80%;
-    margin:0 auto;
-    flex-wrap: nowrap;
-    flex-direction: column;
+.textField {
+  width: 80%;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+  flex-direction: column;
 }
-.button_container{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    width: auto;
+.button_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: auto;
 }
 /* .login-btn{
- 
-    height: 50px;
-    margin-top: 35px;
-} */
+   
+      height: 50px;
+      margin-top: 35px;
+  } */

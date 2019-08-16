@@ -1,18 +1,21 @@
 export const location = [
-  //   "Ahmedabad",
-  //   "Bangalore",
-  //   "Nodia",
+  "Ahmedabad",
+  "Bangalore",
+  "Nodia",
+  "Mumbai",
+  "Pune",
   //   "Dadar",
   //   "Prabhadevi-Busines Arcade (10 th Floor)",
   //   "Prabhadevi-Busines Arcade (9 th Floor)",
   //   "Prabhadevi-Busines Arcade (8 th Floor)",
   //   "Rabale-Sigma IT Park(5th Floor)",
   //   "Rabale-Sigma IT Park(9th Floor)",
-  "Hinjewadi-NPTL SEZ IT 6",
-  "Hinjewadi-NPTL SEZ IT 9"
-  //   "Onsite",
+  //   "Hinjewadi-NPTL SEZ IT 6",
+  //   "Hinjewadi-NPTL SEZ IT 9"
+  "Onsite"
   //   "Work From Home"
 ];
+
 export const typeOfMetting = ["Client Call", "Interview", "StandUp"];
 export const timeSlot = [
   "12:00 am",

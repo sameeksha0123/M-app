@@ -125,6 +125,8 @@ class Login extends Component {
         user => user.name === User.name && user.password === User.password
       );
       console.log("log", log);
+      localStorage.setItem("name", log.name);
+      localStorage.setItem("password", log.password);
       if (log) {
         this.setState({ logged: true, show: true });
       }
@@ -194,7 +196,7 @@ class Login extends Component {
                 image={checked}
                 clicked={() => {
                   this.setState({ show: false });
-                  this.props.history.push("/DashBoard");
+                  this.props.history.push("/userinfo");
                 }}
               >
                 {" "}
