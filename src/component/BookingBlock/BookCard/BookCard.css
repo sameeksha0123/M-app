@@ -1,0 +1,11 @@
+.book-card{
+    width:400px;
+    height:500px;
+}
+.table-cell{
+    border-bottom: 0;
+}
+textarea{
+    border-radius:5px;
+    width:100%;
+}

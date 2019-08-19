@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Select from "../../../component/DropDown/DropDown";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 // import Button from "@material-ui/core/Button";
@@ -107,13 +107,13 @@ class UserTab extends Component {
             action={"location_action"}
           />
         </div> */}
-        <div className="userTab_container-div">
+        {/* <div className="userTab_container-div">
           {this.props.location && (
             <div>
               <Map array={this.props.mapArray} />
             </div>
           )}
-          <div />
+          <div /> */}
           {/* <div style={{ background: "red", height: "200px" }} /> */}
           {/* <div className="mapFloor-container">
             {this.props.location && (
@@ -126,7 +126,7 @@ class UserTab extends Component {
             )}
           </div> */}
         </div>
-      </div>
+      // </div>
     );
   }
 }

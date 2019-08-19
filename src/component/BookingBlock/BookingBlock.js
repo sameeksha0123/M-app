@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import Select from "../DropDown/DropDown";
+// import Select from "../DropDown/DropDown";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import Icon from '@material-ui/core/Icon';
 import { connect } from "react-redux";
 import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  location,
-  timeSlot,
-  TimeFormat,
-  typeOfMetting
-} from "../../containers/Dashboard/UserTab/ArrayData";
+// import { makeStyles } from "@material-ui/core/styles";
+import {timeSlot} from "../../containers/Dashboard/UserTab/ArrayData";
 import "./BookingBlock.css";
 import TimeInput from "material-ui-time-picker";
+import { MuiPickersUtilsProvider,KeyboardTimePicker} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import { Link, Route } from "react-router-dom";
 import moment from "moment";
 import Timekeeper from "react-timekeeper";
 
@@ -24,8 +23,8 @@ import Timekeeper from "react-timekeeper";
 
 const meetingSlots = [15, 30, 45, 60, 75, 90];
 const bookedSlotArray = [
-  { startTime: "6:45 pm", endTime: "7:00 pm" },
-  { startTime: "6:00 pm", endTime: "6:30 pm" }
+  { startTime: "6:45 PM", endTime: "7:00 PM" },
+  { startTime: "6:00 PM", endTime: "6:30 PM" }
 ];
 
 class Book extends Component {
@@ -36,14 +35,27 @@ class Book extends Component {
       time: new Date(),
       selectedDate: new Date(),
       setSelectedDate: "",
-      updatedTime:''
+      updatedTime:'',
+      time2:new Date()
     };
   }
   handleChange = time => {
-    this.setState({ updatedTime: time });
-    console.log("start Time", this.state.updatedTime);
-    var selectedTime = this.state.updatedTime;
+    this.setState({ time },()=>{
+      console.log("Hello",this.state.time)
+      var selectedTime = this.state.time;
     console.log(moment(selectedTime).format("LT"));
+    console.log("~~",bookedSlotArray)
+      if (bookedSlotArray.find(item => item.startTime === this.state.time)) {
+        //   this.setState({ availability: false });
+
+        console.log("same time");
+      } else {
+        
+        console.log("not same @@@@");
+      }
+    })
+    console.log("start Time", this.state.updatedTime);
+    
 
     if (bookedSlotArray.find(item => item.startTime === this.state.time)) {
       //   this.setState({ availability: false });
@@ -52,9 +64,7 @@ class Book extends Component {
       console.log("not same @@@@");
     }
   };
-  handleDateChange = date => {
-    this.setState({ setSelectedDate: date });
-  };
+  
   checkbookingStatus = () => {
     if (this.props.location && this.props.startTime && this.props.endTime) {
       this.setState({ bookingStatus: true });
@@ -72,7 +82,8 @@ class Book extends Component {
   getSlot = (e, timeSlot) => {
     console.log("getslot", timeSlot);
   };
-  submitLogin = e => {
+  handleChangeTime=(e)=>{this.setState({time2:e},() => console.log(this.state.time2))};
+ submitLogin = e => {
     e.preventDefault();
     // this.current_location();
     var isValidate = this.checkbookingStatus();
@@ -104,9 +115,7 @@ class Book extends Component {
     var m = mm;
     if (h > 12) {
       h = hh - 12;
-      if (h != 10 || h != 11 || h != 12) {
-        h = h;
-      }
+     
       dd = "pm";
     } else if ((h = 12)) {
       dd = "pm";
@@ -135,17 +144,41 @@ class Book extends Component {
     // }
 
     return (
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Paper className="bookSlot-container">
         <div className="timePicker">
           <TimeInput
             mode="12h"
+      
             value={this.state.time}
-            onChange={ this.handleChange}
+            onChange={ time=>this.handleChange(time)}
+            // initialTime={new Date()}
             placeholder="Start Time"
+
           />
+          Material ui time KeyboardTimePicker
+          <KeyboardTimePicker
+          margin="normal"
+          id="time-picker"
+          label="Time picker"
+          value={this.state.time2}
+          onChange={this.handleChangeTime}
+          KeyboardButtonProps={{
+            'aria-label': 'change time',
+          }}
+        />
           {/* <Timekeeper time={this.state.time} switchToMinuteOnHourSelect /> */}
         </div>
+        <br/>
+        <Link className="officeLink" to={`/bookCard`}>
+         <Button variant="contained" color="primary" >
+         BOOK
+         {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+         <Icon >send</Icon>
+       </Button>
+       </Link>
       </Paper>
+      </MuiPickersUtilsProvider >
     );
   }
 }

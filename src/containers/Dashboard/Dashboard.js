@@ -7,6 +7,7 @@ import SuperAdmin from "./SuperAdmin/SuperAdminTab";
 import Admin from "./AdminTab/AdminTab";
 import User from "./UserTab/UserTab";
 import BookingBlock from "../../component/BookingBlock/BookingBlock";
+import BookCard from '../../component/BookingBlock/BookCard/BookCard'
 import MapOffice from "../../component/Map/MapOffice";
 import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
@@ -38,6 +39,7 @@ class DashBoard extends Component {
             <Route path={`/location`} component={MapOffice} />;
             <Route path={`/userinfo`} component={User} />;
             <Route path={`/bookSlot`} component={BookingBlock} />
+            <Route path='/bookCard' component={BookCard}/>
             {/* // <Route path={`/DashBoard/bookSlot`} component={BookBlock} />; */}
           </Switch>
         </Container>
