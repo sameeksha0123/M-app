@@ -3,7 +3,9 @@ import OfficeBox from "../Office_box/Office_box";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
+import { room_action } from "../../redux/actions/userAction";
 import "./MapOffice_container.css";
+import { bindActionCreators } from "redux";
 
 class MapOffice extends Component {
   constructor(props) {
@@ -20,6 +22,8 @@ class MapOffice extends Component {
     console.log("box selected", target.className);
     var div = target;
     div.classList.add("focused");
+    this.props.room_action(name);
+    console.log("room selected", name);
     // return <Route path={`/DashBoard/`} component={BookBlock} />;
   }
 
@@ -40,7 +44,7 @@ class MapOffice extends Component {
                 key={item.id}
                 name={item.name}
                 availabitity={item.available}
-                click={e => this.onSelect(e.target)}
+                click={e => this.onSelect(e.target, item.name)}
               />
             </Link>
           ))}
@@ -66,4 +70,15 @@ const mapStateToProps = state => ({
   mapArray: state.userAct.mapArray,
   location: state.userAct.location
 });
-export default connect(mapStateToProps)(MapOffice);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      room_action
+    },
+    dispatch
+  );
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MapOffice);

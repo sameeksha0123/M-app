@@ -4,4 +4,5 @@ export const LOCATION = "LOCATION";
 export const STARTTIME = "STARTTIME";
 export const ENDTIME = "ENDTIME";
 export const MEETINGTYPE = "MEETINGTYPE";
+export const ROOM = "ROOM";
 // export const OFFICESELECTED = "OFFICESELECTED";

@@ -62,6 +62,12 @@ const userAct = (state = initalState, action) => {
         meetingType: action.payload
       };
     }
+    case actionTypes.ROOM: {
+      return {
+        ...state,
+        roomSelected: action.payload
+      };
+    }
     // case actionTypes.OFFICESELECTED: {
     //   return {
     //     ...state,

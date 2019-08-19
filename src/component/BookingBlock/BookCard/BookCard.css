@@ -1,11 +1,22 @@
-.book-card{
-    width:400px;
-    height:500px;
+.book-card {
+  width: 400px;
 }
-.table-cell{
-    border-bottom: 0;
+.table-cell {
+  border-bottom: none;
 }
-textarea{
-    border-radius:5px;
-    width:100%;
+textarea {
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid rgba(224, 224, 224, 1);
 }
+.add-more {
+  width: 65px;
+  height: 65px;
+  border-radius: 50% !important;
+  align-items: center;
+  justify-content: center;
+}
+/* .active-purple-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #ce93d8;
+    box-shadow: 0 1px 0 0 #ce93d8;
+    } */

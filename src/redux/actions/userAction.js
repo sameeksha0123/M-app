@@ -6,6 +6,12 @@ export const location_action = useraction => {
     payload: useraction
   };
 };
+export const room_action = useraction => {
+  return {
+    type: actionTypes.ROOM,
+    payload: useraction
+  };
+};
 export const startTime_action = useraction => {
   return {
     type: actionTypes.STARTTIME,
